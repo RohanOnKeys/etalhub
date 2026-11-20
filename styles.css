@@ -348,7 +348,7 @@ button { font: inherit; color: inherit; }
    ===================================================== */
 .fields {
   padding: clamp(56px, 7vw, 90px) 0;
-  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
 .fields__label { text-align: center; margin-bottom: clamp(24px, 3vw, 36px); }
