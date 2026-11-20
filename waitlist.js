@@ -6,6 +6,13 @@
    of the address here so the email isn't visible in the page source. */
 const WAITLIST_ENDPOINT = "https://formsubmit.co/ajax/robinxander23@gmail.com";
 
+// Background video: hold still for people who prefer reduced motion.
+const bgVideo = document.getElementById("heroVideo");
+if (bgVideo && matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  bgVideo.removeAttribute("autoplay");
+  bgVideo.pause();
+}
+
 const form = document.getElementById("waitlist");
 const statusEl = document.getElementById("status");
 const done = document.getElementById("done");

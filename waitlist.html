@@ -35,11 +35,10 @@
 </nav>
 
 <main class="hero wl">
-  <div class="bio" aria-hidden="true">
-    <div class="layer"><div class="membrane"><div class="membrane__core"></div></div></div>
-    <div class="layer"><div class="cell cell--ghost"></div></div>
-    <div class="layer"><div class="cell cell--spore"></div></div>
-  </div>
+  <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
+    <source src="assets/hero.mp4" type="video/mp4" />
+  </video>
+  <div class="hero__shade wl__shade" aria-hidden="true"></div>
 
   <div class="wl__grid">
     <section class="wl__copy">
