@@ -1,8 +1,10 @@
 /* etal waitlist form
-   Paste your form endpoint below (Formspree, Getform, Basin, or your own API).
-   Example: "https://formspree.io/f/abcdwxyz"
-   While it is empty, the form will not pretend to work: it shows an error instead. */
-const WAITLIST_ENDPOINT = "";
+   Signups are emailed through FormSubmit (formsubmit.co), no account needed.
+   The very first submission sends an activation email to the address below;
+   click the link in it once and every signup after that arrives in the inbox.
+   After activating, FormSubmit also emails you a random alias: paste it in place
+   of the address here so the email isn't visible in the page source. */
+const WAITLIST_ENDPOINT = "https://formsubmit.co/ajax/robinxander@gmail.com";
 
 const form = document.getElementById("waitlist");
 const statusEl = document.getElementById("status");
@@ -35,7 +37,7 @@ form.addEventListener("submit", async (e) => {
     setStatus(msg);
     return;
   }
-  if (data.get("_gotcha")) return; // bot filled the hidden field
+  if (data.get("_honey")) return; // bot filled the hidden field
 
   if (!WAITLIST_ENDPOINT) {
     setStatus("The waitlist isn’t connected yet. Please check back soon.");
@@ -47,12 +49,23 @@ form.addEventListener("submit", async (e) => {
   button.textContent = "Joining…";
   setStatus("", false);
   try {
+    const payload = {
+      name: data.get("name").trim(),
+      email: data.get("email").trim(),
+      role: data.get("role"),
+      field: data.get("field").trim() || "-",
+      languages: data.getAll("languages").join(", ") || "-",
+      _subject: "New Mindmesh waitlist signup",
+      _template: "table",
+      _captcha: "false",
+    };
     const res = await fetch(WAITLIST_ENDPOINT, {
       method: "POST",
-      body: data,
-      headers: { Accept: "application/json" },
+      body: JSON.stringify(payload),
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
     });
-    if (!res.ok) throw new Error(res.status);
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || String(json.success) === "false") throw new Error(json.message || res.status);
     form.hidden = true;
     done.hidden = false;
     done.querySelector("h2").focus?.();

@@ -37,45 +37,15 @@
 </nav>
 
 <!-- ================= HERO ================= -->
-<header class="hero" id="top">
-  <div class="bio" id="bio" aria-hidden="true">
-    <canvas class="bio__dust" id="dust"></canvas>
-    <div class="layer" data-depth="0.25"><div class="membrane"><div class="membrane__core"></div></div></div>
-    <div class="layer" data-depth="0.5"><div class="cell cell--ghost"></div></div>
-    <div class="layer" data-depth="0.7"><div class="cell cell--spore"></div></div>
-    <div class="layer" data-depth="0.9"><div class="cell cell--right"></div></div>
-    <div class="layer" data-depth="1.1"><div class="cell cell--agent"></div></div>
-
-    <div class="layer" data-depth="0.25">
-      <div class="tag tag--a">
-        <span class="tag__dot"></span><span class="tag__wire"></span>
-        <span class="tag__text">GHOSTCITE<br/><b>DETECTED</b></span>
-      </div>
-    </div>
-    <div class="layer" data-depth="1.1">
-      <div class="tag tag--b">
-        <span class="tag__dot"></span><span class="tag__wire"></span>
-        <span class="tag__text">AGENTPEER<br/><b>ACTIVATED</b></span>
-      </div>
-    </div>
-    <div class="layer" data-depth="0.9">
-      <div class="tag tag--c">
-        <span class="tag__dot"></span><span class="tag__wire"></span>
-        <span class="tag__text">CLAIM<br/><b>TRACED</b></span>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero__content">
-    <h1 class="hero__title">Harnessing agents to<br/><em>review</em> the new science.</h1>
-    <div class="hero__side">
-      <p>A sealed review room for the 250,000+ pages of proofs machines are writing. Agentpeers read them and humans countersign.</p>
-      <div class="hero__actions">
-        <a href="#" class="btn btn--white">Open a Sealroom</a>
-        <a href="#glossary" class="link-arrow">Read the glossary</a>
-      </div>
-    </div>
-  </div>
+<header class="hero hero--video" id="top">
+  <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
+    <source src="assets/hero.mp4" type="video/mp4" />
+  </video>
+  <div class="hero__shade" aria-hidden="true"></div>
+  <h1 class="etal-mark">
+    <span class="etal-mark__word">et al<span class="etal-mark__dot">.</span></span>
+    <span class="etal-mark__sub">(and others)</span>
+  </h1>
 </header>
 
 <!-- ================= ABOUT ================= -->

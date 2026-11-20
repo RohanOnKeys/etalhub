@@ -48,61 +48,17 @@ function updateNav() {
   nav.classList.toggle("is-solid", scrollY > hero.offsetHeight - 80);
 }
 
-/* ---------- hero: parallax + drifting dust ---------- */
-const layers = $$(".layer");
-if (!reduceMotion && matchMedia("(pointer: fine)").matches) {
-  hero.addEventListener("mousemove", (e) => {
-    const x = e.clientX / innerWidth - 0.5;
-    const y = e.clientY / innerHeight - 0.5;
-    layers.forEach((l) => {
-      const d = +l.dataset.depth;
-      l.style.transform = `translate(${x * d * -28}px, ${y * d * -22}px)`;
-    });
-  });
+/* ---------- hero video: pause offscreen, respect reduced motion ---------- */
+const heroVideo = $("#heroVideo");
+if (reduceMotion) {
+  heroVideo.removeAttribute("autoplay");
+  heroVideo.pause();
+} else {
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) heroVideo.play().catch(() => {});
+    else heroVideo.pause();
+  }).observe(hero);
 }
-
-const dust = $("#dust");
-const ctx = dust.getContext("2d");
-let specks = [];
-let heroVisible = true;
-function sizeDust() {
-  const dpr = Math.min(devicePixelRatio || 1, 2);
-  dust.width = dust.offsetWidth * dpr;
-  dust.height = dust.offsetHeight * dpr;
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  const rnd = seeded(7);
-  const count = Math.round((dust.offsetWidth * dust.offsetHeight) / 9000);
-  specks = Array.from({ length: count }, () => ({
-    x: rnd() * dust.offsetWidth,
-    y: rnd() * dust.offsetHeight,
-    r: rnd() * 1.6 + 0.3,
-    vx: (rnd() - 0.5) * 0.12,
-    vy: -rnd() * 0.18 - 0.03,
-    a: rnd() * 0.5 + 0.15,
-  }));
-}
-function drawDust() {
-  const w = dust.offsetWidth, h = dust.offsetHeight;
-  ctx.clearRect(0, 0, w, h);
-  for (const s of specks) {
-    if (!reduceMotion) {
-      s.x += s.vx; s.y += s.vy;
-      if (s.y < -4) s.y = h + 4;
-      if (s.x < -4) s.x = w + 4;
-      if (s.x > w + 4) s.x = -4;
-    }
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(170,205,255,${s.a})`;
-    ctx.fill();
-  }
-  if (!reduceMotion && heroVisible) requestAnimationFrame(drawDust);
-}
-new IntersectionObserver(([e]) => {
-  const was = heroVisible;
-  heroVisible = e.isIntersecting;
-  if (heroVisible && !was && !reduceMotion) requestAnimationFrame(drawDust);
-}).observe(hero);
 
 /* ---------- reveal on scroll + count-up ---------- */
 function countUp(node) {
@@ -289,9 +245,7 @@ addEventListener("scroll", () => {
   ticking = true;
   requestAnimationFrame(() => { updateNav(); updateDoor(); ticking = false; });
 }, { passive: true });
-addEventListener("resize", () => { sizeDust(); updateDoor(); if (reduceMotion) drawDust(); });
+addEventListener("resize", updateDoor);
 
-sizeDust();
-drawDust();
 updateNav();
 updateDoor();
