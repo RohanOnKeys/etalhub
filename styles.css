@@ -500,6 +500,42 @@ button { font: inherit; color: inherit; }
 .faq code { font: 13px var(--f-mono); background: var(--powder-2); padding: 1px 6px; border-radius: 4px; }
 
 /* =====================================================
+   EARLY ADOPTERS (logo strip)
+   ===================================================== */
+.adopters { padding: clamp(40px, 5vw, 64px) 0; border-top: 1px solid var(--line); overflow: hidden; }
+.adopters__label {
+  margin: 0 0 24px; text-align: center;
+  font: 500 10px var(--f-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+}
+.logo-strip {
+  overflow: hidden;
+  -webkit-mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+          mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.logo-strip .marquee__track { align-items: center; animation-duration: 55s; }
+.logo-strip:hover .marquee__track { animation-play-state: paused; }
+.logo-strip li { flex: none; display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 clamp(28px, 3.4vw, 52px); }
+.lg-img { display: block; height: 22px; width: auto; filter: grayscale(1) brightness(0); opacity: .5; transition: opacity .25s ease; }
+/* logos that carry their own name: sized to sit level with the wordmarks */
+.lg-img--ucl { height: 26px; opacity: .6; }
+.lg-img--stanford { height: 26px; opacity: .5; }
+.lg-img--anthropic { height: 13px; }
+.lg-img--openai { height: 22px; }
+.lg-img--deepmind { height: 22px; opacity: .55; }
+.lg-img--iitd { height: 28px; opacity: .6; }
+.lg-img--lsu { height: 32px; opacity: .6; }
+/* bare symbols: small mark, name beside it */
+.lg-img--niser { height: 26px; opacity: .6; }
+.lg-img--aiims { height: 28px; opacity: .6; }
+.lg-img--iitism { height: 28px; opacity: .6; }
+.lg-img--jeonbuk { height: 26px; opacity: .4; }
+.lg-img--yc { height: 20px; filter: grayscale(1) contrast(1.4); }.wordmark {
+  font: 500 17px/1 var(--f-head); letter-spacing: -.01em; white-space: nowrap;
+  color: var(--ink); opacity: .5; transition: opacity .25s ease;
+}
+.logo-strip li:hover .lg-img, .logo-strip li:hover .wordmark { opacity: .9; }
+
+/* =====================================================
    CLOSING
    ===================================================== */
 .closing {
