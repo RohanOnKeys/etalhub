@@ -4,7 +4,7 @@
    click the link in it once and every signup after that arrives in the inbox.
    After activating, FormSubmit also emails you a random alias: paste it in place
    of the address here so the email isn't visible in the page source. */
-const WAITLIST_ENDPOINT = "https://formsubmit.co/ajax/robinxander@gmail.com";
+const WAITLIST_ENDPOINT = "https://formsubmit.co/ajax/robinxander23@gmail.com";
 
 const form = document.getElementById("waitlist");
 const statusEl = document.getElementById("status");
