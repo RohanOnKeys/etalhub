@@ -9,14 +9,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
 </head>
 <body>
 
+<!-- etal leaf mark, defined once and reused with <use href="#leaf"> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="leaf" viewBox="290 60 940 900">
+    <path d="M790 70C784 112 783 150 795 170C812 192 890 238 890 238L845 368L917 322L890 475L1033 380L1070 443L1218 406C1190 450 1166 488 1157 517C1170 528 1202 548 1202 548C1140 570 1060 604 1038 622L1087 738L905 686C890 682 876 690 871 704L935 808L799 760C778 808 752 876 737 925L645 948C700 905 722 892 737 860C750 830 765 752 765 752L622 803L693 699L572 748L502 603C450 608 400 614 362 622L380 540C385 515 360 490 300 443L413 434C430 432 440 425 448 410C455 398 465 362 465 362L620 447L642 415L591 380L668 357L682 287C650 289 625 293 604 297Z"/>
+  </symbol>
+</svg>
+
 <!-- ================= NAV ================= -->
 <nav class="nav" id="nav">
-  <!-- LOGO SLOT: swap the <a> contents for <img src="assets/logo.svg" alt="etal" height="28" /> -->
   <a href="#top" class="brand" aria-label="etal home">
-    <span class="brand__mark" aria-hidden="true"></span>
+    <svg class="leaf" aria-hidden="true"><use href="#leaf"/></svg>
     <span class="brand__word">etal</span>
   </a>
   <ul class="nav__links">
@@ -366,7 +373,7 @@
 <footer class="closing">
   <!-- MASCOT SLOT: replace with <img src="assets/mascot.png" alt="" class="mascot" /> -->
   <div class="closing__mark reveal">
-    <span class="brand__mark brand__mark--lg" aria-hidden="true"></span>
+    <svg class="leaf leaf--lg" aria-hidden="true"><use href="#leaf"/></svg>
     <p class="closing__word">etal</p>
     <p class="closing__sub">and others</p>
   </div>
