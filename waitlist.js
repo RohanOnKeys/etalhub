@@ -69,8 +69,12 @@ form.addEventListener("submit", async (e) => {
     form.hidden = true;
     done.hidden = false;
     done.querySelector("h2").focus?.();
-  } catch {
-    setStatus("Something went wrong. Please try again in a moment.");
+  } catch (err) {
+    const msg = String(err && err.message || "");
+    console.warn("etal waitlist:", msg);
+    setStatus(/activat/i.test(msg)
+      ? "The waitlist is still being set up. Please try again a little later."
+      : "Something went wrong. Please try again in a moment.");
     button.disabled = false;
     button.textContent = "Join the Mindmesh";
   }
