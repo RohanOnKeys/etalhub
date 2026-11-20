@@ -304,7 +304,9 @@ button { font: inherit; color: inherit; }
 /* =====================================================
    LANGUAGES
    ===================================================== */
-.langs { padding: 0 0 clamp(80px, 10vw, 130px); }
+.langs { padding: clamp(130px, 18vh, 180px) 0 clamp(80px, 10vw, 130px); }
+.nav__links a[aria-current="page"] { opacity: 1; color: var(--blue); }
+.closing--short { min-height: 52vh; }
 .how__intro strong { color: var(--ink); font-weight: 500; }
 .langs__search {
   display: flex; align-items: center; gap: 12px;

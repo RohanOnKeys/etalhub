@@ -231,43 +231,6 @@ function updateDoor() {
   }
 })();
 
-/* ---------- languages: count, per-category totals, search ---------- */
-(function languages() {
-  const grid = $("#langGrid");
-  const chips = $$("li", grid);
-  const unique = new Set(chips.map((c) => c.textContent.trim().toLowerCase()));
-  const total = unique.size;
-  $$("[data-lang-count]").forEach((n) => (n.textContent = total));
-  const stat = $("[data-lang-stat]");
-  if (stat) { stat.dataset.count = total; stat.dataset.suffix = ""; stat.textContent = total; }
-  $$(".lcat", grid).forEach((cat) => {
-    const small = document.createElement("small");
-    small.textContent = $$("li", cat).length;
-    $("h3", cat).appendChild(small);
-  });
-
-  const input = $("#langSearch");
-  const hits = $("#langHits");
-  const missing = $("#langMissing");
-  const norm = (s) => s.toLowerCase().replace(/[^a-z0-9+#]/g, "");
-  input.addEventListener("input", () => {
-    const q = norm(input.value);
-    grid.classList.toggle("is-filtering", !!q);
-    let count = 0;
-    $$(".lcat", grid).forEach((cat) => {
-      let any = false;
-      $$("li", cat).forEach((li) => {
-        const on = !!q && norm(li.textContent).includes(q);
-        li.classList.toggle("hit", on);
-        if (on) { any = true; count++; }
-      });
-      cat.classList.toggle("no-hit", !!q && !any);
-    });
-    hits.textContent = q ? `${count} match${count === 1 ? "" : "es"}` : "";
-    missing.hidden = !q || count > 0;
-  });
-})();
-
 /* ---------- fields marquee: duplicate each row for a seamless loop ---------- */
 $$(".marquee__track").forEach((track) => {
   [...track.children].forEach((li) => {
