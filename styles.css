@@ -524,6 +524,7 @@ button { font: inherit; color: inherit; }
 .lg-img--deepmind { height: 22px; opacity: .55; }
 .lg-img--iitd { height: 28px; opacity: .6; }
 .lg-img--lsu { height: 32px; opacity: .6; }
+.lg-img--hkust { height: 30px; opacity: .6; }
 /* bare symbols: small mark, name beside it */
 .lg-img--niser { height: 26px; opacity: .6; }
 .lg-img--aiims { height: 28px; opacity: .6; }
